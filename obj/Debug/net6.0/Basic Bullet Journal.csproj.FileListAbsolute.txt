@@ -1,0 +1,15 @@
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\bin\Debug\net6.0\Basic Bullet Journal.exe
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\bin\Debug\net6.0\Basic Bullet Journal.deps.json
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\bin\Debug\net6.0\Basic Bullet Journal.runtimeconfig.json
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\bin\Debug\net6.0\Basic Bullet Journal.dll
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\bin\Debug\net6.0\Basic Bullet Journal.pdb
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.csproj.AssemblyReference.cache
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.AssemblyInfoInputs.cache
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.AssemblyInfo.cs
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.csproj.CoreCompileInputs.cache
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.dll
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\refint\Basic Bullet Journal.dll
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.pdb
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\Basic Bullet Journal.genruntimeconfig.cache
+C:\Users\britl\Documents\code louisville\Basic Bullet Journal\obj\Debug\net6.0\ref\Basic Bullet Journal.dll
