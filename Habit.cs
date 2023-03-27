@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Basic_Bullet_Journal
 {
-    internal class JournalDisplay
+    internal class Habit
     {
+        public string Name { get; set; }
+
+        public bool Completed { get; set; }
     }
 }
