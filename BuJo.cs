@@ -33,6 +33,7 @@ namespace Basic_Bullet_Journal
                         Console.WriteLine("\nJournal!\n");//call method for Journal
                         Console.WriteLine("Would you like to 'view' journal or 'create' new entry?");
                         var input = Console.ReadLine();
+
                         if (input.ToLower() == "view")
                         {
                             Journal.View();
@@ -55,11 +56,11 @@ namespace Basic_Bullet_Journal
 
                     case "2":
 
-                        var input2 = Console.ReadLine();
                         //call method for habit tracker creation
                         Console.WriteLine("\nHabit Tracker!");
+                        Console.WriteLine("Would you like to 'view' your tracker or 'add' a new habit?");
+                        var input2 = Console.ReadLine();
 
-                        Console.WriteLine("Would you like to view your tracker (1) or add a new habit (2)?");
                         if (input2.ToLower() == "view")
                         {
                             HabitTracker.View();
