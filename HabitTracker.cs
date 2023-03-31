@@ -45,26 +45,35 @@ namespace Basic_Bullet_Journal
 
             };
                     Console.WriteLine("Please enter habit name:");
-                    string inputH = Console.ReadLine();
+                    string ?inputH = Console.ReadLine();
                     Console.WriteLine("Did you complete the task this week?");
                     var task = Console.ReadLine();
                     if (task.ToLower() == "yes")
                     {
-                        Console.WriteLine("On what day of the week?");
+                        Console.WriteLine("On what days of the week? (e.g. 'Monday,Wednesday,Friday'");
                         var day = Console.ReadLine();
-                        if (completed.ContainsKey($"{day.ToLower()}"))
+                        foreach (var days in day.Split(','))
                         {
-                            completed[$"{day.ToLower()}"] = "X";
-                            Console.WriteLine("Nice going!");
+                            string n = Convert.ToString(days);
+
+                            if (completed.ContainsKey($"{n.ToLower()}"))
+                            {
+                                completed[$"{n.ToLower()}"] = "X";
+                            }     
+                            else
+                            { 
+                                Console.WriteLine("Invalid input!");
+                                break;
+                            }
                         }
-                        else
-                        { Console.WriteLine("Tomorrow is another day!"); }
                     }
-                        tracker.Add(new Habits(inputH, completed));
+                        tracker.Add(new Habits(inputH.ToUpper(), completed));
                 }
+                Console.WriteLine("\nNice going!\n");
+                Console.WriteLine("*~*This Week's Habits*~*");
                 foreach (var item in tracker)
                 {
-                    Console.WriteLine($"This Week's Habits:\n *{item} ");
+                    Console.WriteLine($"\n *{item} ");
                 }    
             }
             return tracker;
@@ -103,9 +112,10 @@ namespace Basic_Bullet_Journal
             else
             {
                 Console.WriteLine("Please write 'okay!'");
+                HabitTracker.Options();
             }
             //Console.WriteLine("\nYou are definitely viewing habits right now!");
-            HabitTracker.Options();
+           
            
         }
 
