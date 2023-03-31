@@ -28,11 +28,12 @@ namespace Basic_Bullet_Journal
 
                 switch (select)
                 {
+                    //Option to view journal entries, create new entry, or add to an existing entry
                     case "1":
                         
-                        Console.WriteLine("\nJournal!\n");//call method for Journal
-                        Console.WriteLine("Would you like to 'view' journal or 'create' new entry?");
-                        var input = Console.ReadLine();
+                        Console.WriteLine("\nJournal!\n");
+                        Console.WriteLine("Would you like 'create' a new journal, 'add' to an existing journal, or 'view' an existing journal?\n");
+                        string input = Console.ReadLine();
 
                         if (input.ToLower() == "view")
                         {
@@ -42,9 +43,13 @@ namespace Basic_Bullet_Journal
                         {
                             Journal.Create();
                         }
+                        else if (input.ToLower() == "add")
+                        {
+                            Journal.Add();
+                        }
                         else
                         {
-                            Console.WriteLine("Please choose to 'view' or 'create' an entry.");
+                            Console.WriteLine("Please choose to 'create', 'view', or 'add' to an entry.\n");
                         }
 
                         //var journal = new Journal();
@@ -53,33 +58,33 @@ namespace Basic_Bullet_Journal
                         UseJournal();
                         break;
 
-
+                    //Habit tracker functionality and viewing with call to relevant methods
                     case "2":
 
-                        //call method for habit tracker creation
                         Console.WriteLine("\nHabit Tracker!");
-                        Console.WriteLine("Would you like to 'view' your tracker or 'add' a new habit?");
-                        var input2 = Console.ReadLine();
+                        //Console.WriteLine("Would you like to 'view' your tracker or 'add' a new habit?");
 
-                        if (input2.ToLower() == "view")
-                        {
-                            HabitTracker.View();
-                        }
-                        else if (input2.ToLower() == "add")
-                        {
-                            HabitTracker.Add();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Please choose to 'view' tracker or 'add' a habit.");
-                        }
+                        HabitTracker.Options();
+                        //string input2 = Console.ReadLine();
+
+                        //if (input2.ToLower() == "view")
+                        //{
+                        //    HabitTracker.View();
+                        //}
+                        //else if (input2.ToLower() == "add")
+                        //{
+                        //    HabitTracker.AddHabit();
+                        //}
+                        //else
+                        //{
+                        //    Console.WriteLine("Please choose to 'view' tracker or 'add' a habit.");
+                        //}
                         UseJournal();
                         break;
 
-
+                    //Calendar functionality
                     case "3":
 
-                        //call method for calendar access
                         Console.WriteLine("\nCalendar!");
                         UseJournal();
                         break;
