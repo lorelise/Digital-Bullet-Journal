@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Basic_Bullet_Journal
 {
-    public class BuJo
+    public class BuJo : HabitTracker
     {
         static void Main(string[] args)
         {
@@ -63,22 +64,12 @@ namespace Basic_Bullet_Journal
 
                         Console.WriteLine("\nHabit Tracker!");
                         //Console.WriteLine("Would you like to 'view' your tracker or 'add' a new habit?");
-
+                        
+     
                         HabitTracker.Options();
-                        //string input2 = Console.ReadLine();
 
-                        //if (input2.ToLower() == "view")
-                        //{
-                        //    HabitTracker.View();
-                        //}
-                        //else if (input2.ToLower() == "add")
-                        //{
-                        //    HabitTracker.AddHabit();
-                        //}
-                        //else
-                        //{
-                        //    Console.WriteLine("Please choose to 'view' tracker or 'add' a habit.");
-                        //}
+                        
+
                         UseJournal();
                         break;
 

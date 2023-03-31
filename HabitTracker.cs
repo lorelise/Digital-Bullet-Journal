@@ -5,43 +5,81 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Net.Http.Json;
+using System.Net;
 
 namespace Basic_Bullet_Journal
 {
-    public class HabitTracker : BuJo 
+    public class HabitTracker
     {
         //weekly habit tracker
         public static List<Habits> AddHabit()
         {
-            
-            List<Habits> tracker = new List<Habits>();
-            Console.WriteLine("Please enter habit name:");
-            string inputH = Console.ReadLine();
 
-            Console.WriteLine("Populating....");
-            var completed = new Dictionary<string, string>()
+            Console.WriteLine("How many habits would you like to add?");
+            var numberOfHabits = int.Parse(Console.ReadLine());
+            List<Habits> tracker = new List<Habits>();
+            if (numberOfHabits <= 0 || numberOfHabits > 10)
             {
-                {"Sunday", "_"},
-                {"Monday", "_" },
-                {"Tuesday", "_" },
-                {"Wednesday", "_"},
-                {"Thursday", "x"},
-                {"Friday", "_"},
-                {"Saturday", "_"}
+                Console.WriteLine("Invalid input. Please enter a number between 1 and 10.");
+            }
+           
+            else
+            {
+                for (int i = 0; i < numberOfHabits; i++)
+                {
+
+
+                    Console.WriteLine("Populating....");
+                    var completed = new Dictionary<string, string>()
+            {
+                {"sunday", "_"},
+                {"monday", "_" },
+                {"tuesday", "_" },
+                {"wednesday", "_"},
+                {"thursday", "_"},
+                {"friday", "_"},
+                {"saturday", "_"}
 
             };
-            tracker.Add(new Habits(inputH, completed));
+                    Console.WriteLine("Please enter habit name:");
+                    string inputH = Console.ReadLine();
+                    Console.WriteLine("Did you complete the task this week?");
+                    var task = Console.ReadLine();
+                    if (task.ToLower() == "yes")
+                    {
+                        Console.WriteLine("On what day of the week?");
+                        var day = Console.ReadLine();
+                        if (completed.ContainsKey($"{day.ToLower()}"))
+                        {
+                            completed[$"{day.ToLower()}"] = "X";
+                            Console.WriteLine("Nice going!");
+                        }
+                        else
+                        { Console.WriteLine("Tomorrow is another day!"); }
+                    }
+                        tracker.Add(new Habits(inputH, completed));
+                }
+                foreach (var item in tracker)
+                {
+                    Console.WriteLine($"This Week's Habits:\n *{item} ");
+                }    
+            }
+            return tracker;
             
 
-            return tracker;
+            //System.IO.File.WriteAllLines(@"C:\temp\ipAddresses.txt", tracker);
 
-            //string docPath =
+
+            //List<Habits> docPath =
             //      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             //using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "habits.txt")))
             //{
 
-            //    foreach (string item in bool)
+            //    foreach (string item in tracker)
             //        outputFile.WriteLine(item);
             //}
 
@@ -49,27 +87,25 @@ namespace Basic_Bullet_Journal
 
         public static void Options()
         {
-            Console.WriteLine("Would you like to 'view' your tracker or 'add' a new habit?");
+            Console.WriteLine("Let's look at your habits! Enter 'okay' to continue.");
             string input2 = Console.ReadLine();
 
-            if (input2.ToLower() == "view")
+            if (input2.ToLower() == "okay")
             {
-                List<Habits> allHabits = HabitTracker.AddHabit();
-                foreach (var habit in allHabits)
-                {
-                    Console.WriteLine($"This Week's Habits:\n *{habit} ");
-                }
-            }
-            else if (input2.ToLower() == "add")
-            {
+                //List<Habits> allHabits = HabitTracker.AddHabit();
                 HabitTracker.AddHabit();
+                //foreach (var habit in allHabits)
+                //{
+                //    Console.WriteLine($"This Week's Habits:\n *{habit} ");
+                //}
             }
+
             else
             {
-                Console.WriteLine("Please choose to 'view' tracker or 'add' a habit.");
+                Console.WriteLine("Please write 'okay!'");
             }
-            Console.WriteLine("\nYou are definitely viewing habits right now!");
-
+            //Console.WriteLine("\nYou are definitely viewing habits right now!");
+            HabitTracker.Options();
            
         }
 

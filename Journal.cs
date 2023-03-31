@@ -23,7 +23,7 @@ namespace Basic_Bullet_Journal
 
             if (File.Exists(@"C:\Users\britl\Documents\entry1.txt"))
             {
-                Console.WriteLine("Entry already exists. Please select 'add' option to add on to your journal.");
+                Console.WriteLine("Journal already exists. Please select 'add' option to add on to your journal.");
             }
             else
             {
