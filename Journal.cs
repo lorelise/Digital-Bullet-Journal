@@ -10,16 +10,8 @@ namespace Basic_Bullet_Journal
 {
     internal class Journal : BuJo
     {
-        //one file option: but add to it, choose options for adding info? 
-        //use stack??
-        //so there's not an entry for every single day, but rather by month.
-        //for view:
-        //please select month to view entry for
-        //for create:
-        //
         public static void Create()
         {
-            
 
             if (File.Exists(@"C:\Users\britl\Documents\entry1.txt"))
             {
@@ -31,7 +23,7 @@ namespace Basic_Bullet_Journal
 
                 string journalInput = Console.ReadLine();
                 // Create a string array with the lines of text
-                string[] lines = { journalInput, "Second line", "Third line" };
+                string[] lines = { journalInput, journalInput, journalInput };
 
                 // Set a variable to the Documents path.
                 string docPath =
@@ -45,38 +37,11 @@ namespace Basic_Bullet_Journal
                         outputFile.WriteLine(line);
                 }
             }
-            //var journalInput = Console.ReadLine();
-            //// Create a string array with the lines of text
-            //string[] lines = { journalInput, "Second line", "Third line" };
-
-            //// Set a variable to the Documents path.
-            //string docPath =
-            //  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            //// Write the string array to a new file named "WriteLines.txt".
-            //using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "entry1.txt")))
-            //{
-
-            //        foreach (string line in lines)
-            //           outputFile.WriteLine(line);
-            //}
-
-            
 
         }
 
         public static void View()
         {
-            //Console.WriteLine("Choose month:")
-            //var input = Console.ReadLine();
-            //switch (input)
-            //{
-            //    case J:
-            //        {
-
-            //        }
-            //}
-            //Console.WriteLine("| You are definitely viewing entries right now! |");
 
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
@@ -101,6 +66,15 @@ namespace Basic_Bullet_Journal
         {
             //method for adding to an entry
             Console.WriteLine("\nYou are adding content to an existing entry. Nice!");
+            // Set a variable to the Documents path.
+            var append = Console.ReadLine();
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            // Append text to an existing file
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "entry1.txt"), true))
+            {
+                outputFile.WriteLine(append);
+            }
         }
 
 

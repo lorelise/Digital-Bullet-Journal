@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Net.Http.Json;
 using System.Net;
+using System.Collections;
 
 namespace Basic_Bullet_Journal
 {
@@ -77,8 +78,12 @@ namespace Basic_Bullet_Journal
                 }    
             }
             return tracker;
-            
 
+            //using (TextWriter tw = new StreamWriter("SavedList.txt"))
+            //{
+            //    foreach (String s in tracker)
+            //        tw.WriteLine(s);
+            //}
             //System.IO.File.WriteAllLines(@"C:\temp\ipAddresses.txt", tracker);
 
 
@@ -101,12 +106,9 @@ namespace Basic_Bullet_Journal
 
             if (input2.ToLower() == "okay")
             {
-                //List<Habits> allHabits = HabitTracker.AddHabit();
+                
                 HabitTracker.AddHabit();
-                //foreach (var habit in allHabits)
-                //{
-                //    Console.WriteLine($"This Week's Habits:\n *{habit} ");
-                //}
+
             }
 
             else
@@ -117,6 +119,11 @@ namespace Basic_Bullet_Journal
             //Console.WriteLine("\nYou are definitely viewing habits right now!");
            
            
+        }
+
+        public static void View()
+        {
+            
         }
 
         //public string[][]   

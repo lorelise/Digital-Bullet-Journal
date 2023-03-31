@@ -21,7 +21,7 @@ namespace Basic_Bullet_Journal
             Console.WriteLine("Select option from below to proceed, or type 'Q' to quit:\n");
             Console.WriteLine("1) Text Journal");
             Console.WriteLine("2) Habit Tracker");
-            Console.WriteLine("3) Calendar");
+            Console.WriteLine("3) View Current Habit Tracker");
 
 
             var select = Console.ReadLine();
@@ -73,10 +73,11 @@ namespace Basic_Bullet_Journal
                         UseJournal();
                         break;
 
-                    //Calendar functionality
+                    //View current tracker
                     case "3":
 
-                        Console.WriteLine("\nCalendar!");
+                        Console.WriteLine("\nViewing!!");
+
                         UseJournal();
                         break;
 
