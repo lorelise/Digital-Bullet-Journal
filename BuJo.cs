@@ -59,9 +59,6 @@ namespace Basic_Bullet_Journal
                             Console.WriteLine("Please choose to 'create', 'view', or 'add' to an entry.\n");
                         }
 
-                        //var journal = new Journal();
-                        //Journal.ViewMethod();
-                       
                         UseJournal();
                         break;
 

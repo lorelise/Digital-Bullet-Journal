@@ -39,7 +39,6 @@ namespace Basic_Bullet_Journal
                         outputFile.WriteLine(line);
                 }
             }
-
         }
 
         // method for viewing journal
@@ -48,10 +47,10 @@ namespace Basic_Bullet_Journal
 
 
             string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bulletjournal.txt");
-            string[] lines = System.IO.File.ReadAllLines(@filePath);
+            string[] lines = File.ReadAllLines(@filePath);
 
             // display contents
-            System.Console.WriteLine("");
+            Console.WriteLine("");
             foreach (string line in lines)
             {
 
@@ -60,7 +59,7 @@ namespace Basic_Bullet_Journal
             }
 
             Console.WriteLine("Press any key to return to menu.");
-            System.Console.ReadKey();
+            Console.ReadKey();
         }
 
 

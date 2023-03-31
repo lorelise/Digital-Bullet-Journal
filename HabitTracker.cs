@@ -9,6 +9,8 @@ using System.Net;
 using System.Collections;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Diagnostics;
+using System.Net.Http.Json;
 
 
 namespace Basic_Bullet_Journal
@@ -24,8 +26,7 @@ namespace Basic_Bullet_Journal
             if (numberOfHabits <= 0 || numberOfHabits > 10)
             {
                 Console.WriteLine("Invalid input. Please enter a number between 1 and 10.");
-            }
-           
+            }  
             else
             {
                 for (int i = 0; i < numberOfHabits; i++)
@@ -51,35 +52,36 @@ namespace Basic_Bullet_Journal
                     {
                         Console.WriteLine("On what days of the week? (e.g. 'Monday,Wednesday,Friday'");
                         var day = Console.ReadLine();
-                        foreach (var days in day.Split(','))
-                        {
-                            string n = Convert.ToString(days);
-
-                            if (completed.ContainsKey($"{n.ToLower()}"))
+                            foreach (var days in day.Split(','))
                             {
-                                completed[$"{n.ToLower()}"] = "X";
-                            }     
-                            else
-                            { 
-                                Console.WriteLine("Invalid input!");
-                                break;
+                                string n = Convert.ToString(days);
+
+                                if (completed.ContainsKey($"{n.ToLower()}"))
+                                {
+                                    completed[$"{n.ToLower()}"] = "X";
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid input!");
+                                    AddHabit();
+                                    break;
+                                }
                             }
-                        }
                     }
                         tracker.Add(new Habits(inputH.ToUpper(), completed));
                 }
                 Console.WriteLine("\nNice going!\n");
                 Console.WriteLine("*~*This Week's Habits*~*");
+
                 var options = new JsonSerializerOptions { WriteIndented = true };
                 string jsonString = JsonSerializer.Serialize(tracker, options);
-                string docPath =
-                  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "HabitTracker.txt")))
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "HabitTracker.json")))
                 {
-                        outputFile.WriteLine(jsonString);
+                    outputFile.WriteLine(jsonString);
                 }
-                //Console.WriteLine(jsonString);
+
                 foreach (var item in tracker)
                 {
                     Console.WriteLine($"\n *{item} ");
@@ -110,34 +112,20 @@ namespace Basic_Bullet_Journal
 
         public static void View()
         {
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HabitTracker.txt");
-            string[] lines = System.IO.File.ReadAllLines(@filePath);
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HabitTracker.json");
+            string[] lines = File.ReadAllLines(@filePath);
 
-            // Display the file contents by using a foreach loop.
-            System.Console.WriteLine("");
+            Console.WriteLine("");
             foreach (string line in lines)
             {
-                // Use a tab to indent each line of the file.
                 Console.WriteLine("\t" + line);
-                //Console.WriteLine("");
+                
             }
 
-            // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to return to menu.");
-            System.Console.ReadKey();
+            Console.ReadKey();
+
+
         }
-
-        //public string[][]   
-        //case (2)
-        //  AddHabit() method
-
-        //case (1)
-        //  ViewTracker() method
-
-        //else
-        //  Console.WriteLine("Invalid input. Please type 1 to view tracker, 2 to add a new habit, or 'return' to return to homepage.");
-
-        //if ( = "return")
-        //loop back to homepage
     }
 }
