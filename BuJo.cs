@@ -4,10 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Basic_Bullet_Journal
 {
-    public class BuJo : HabitTracker
+    public class BuJo
     {
         static void Main(string[] args)
         {
@@ -48,6 +50,10 @@ namespace Basic_Bullet_Journal
                         {
                             Journal.Add();
                         }
+                        else if (input.ToLower() == "delete")
+                        {
+                            Journal.Delete();
+                        }
                         else
                         {
                             Console.WriteLine("Please choose to 'create', 'view', or 'add' to an entry.\n");
@@ -63,12 +69,8 @@ namespace Basic_Bullet_Journal
                     case "2":
 
                         Console.WriteLine("\nHabit Tracker!");
-                        //Console.WriteLine("Would you like to 'view' your tracker or 'add' a new habit?");
-                        
-     
-                        HabitTracker.Options();
 
-                        
+                        HabitTracker.Options();
 
                         UseJournal();
                         break;
@@ -76,7 +78,7 @@ namespace Basic_Bullet_Journal
                     //View current tracker
                     case "3":
 
-                        Console.WriteLine("\nViewing!!");
+                        HabitTracker.View();
 
                         UseJournal();
                         break;

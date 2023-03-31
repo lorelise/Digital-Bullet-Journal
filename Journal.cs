@@ -5,32 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Basic_Bullet_Journal
 {
     internal class Journal : BuJo
     {
+
+        // method for creating initial journal file
         public static void Create()
         {
-
-            if (File.Exists(@"C:\Users\britl\Documents\entry1.txt"))
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bulletjournal.txt");
+            if (File.Exists(@filePath))
             {
-                Console.WriteLine("Journal already exists. Please select 'add' option to add on to your journal.");
+                Console.WriteLine("Journal already exists. Please select 'add' option to add on to your journal, or 'delete' to delete journal entirely.");
             }
             else
             {
                 Console.WriteLine("Input journal text below, and hit enter to submit:");
-
+                
                 string journalInput = Console.ReadLine();
-                // Create a string array with the lines of text
-                string[] lines = { journalInput, journalInput, journalInput };
 
-                // Set a variable to the Documents path.
-                string docPath =
-                  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string[] lines = { journalInput };
 
-                // Write the string array to a new file named "WriteLines.txt".
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "entry1.txt")))
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                // Write the string array to a new file
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "bulletjournal.txt")))
                 {
 
                     foreach (string line in lines)
@@ -40,43 +42,52 @@ namespace Basic_Bullet_Journal
 
         }
 
+        // method for viewing journal
         public static void View()
         {
 
-            // Read each line of the file into a string array. Each element
-            // of the array is one line of the file.
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\britl\Documents\entry1.txt");
 
-            // Display the file contents by using a foreach loop.
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bulletjournal.txt");
+            string[] lines = System.IO.File.ReadAllLines(@filePath);
+
+            // display contents
             System.Console.WriteLine("");
             foreach (string line in lines)
             {
-                // Use a tab to indent each line of the file.
+
                 Console.WriteLine("\t" + line);
                 Console.WriteLine("      --------------------------------------------------------------");
             }
 
-            // Keep the console window open in debug mode.
             Console.WriteLine("Press any key to return to menu.");
             System.Console.ReadKey();
         }
 
 
+        // method for adding to journal
         public static void Add()
         {
-            //method for adding to an entry
-            Console.WriteLine("\nYou are adding content to an existing entry. Nice!");
+            Console.WriteLine("\nBegin typing journal content and press enter to save.");
             // Set a variable to the Documents path.
             var append = Console.ReadLine();
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
             // Append text to an existing file
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "entry1.txt"), true))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "bulletjournal.txt"), true))
             {
                 outputFile.WriteLine(append);
             }
         }
 
+        public static void Delete()
+        {
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "bulletjournal.txt");
+            if (File.Exists(@filePath))
+            {
+                File.Delete(@filePath);
+                Console.WriteLine("Journal has been deleted.");
+            }
+        }
 
     }
 }

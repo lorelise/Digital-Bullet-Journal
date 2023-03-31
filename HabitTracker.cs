@@ -5,11 +5,11 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Net.Http.Json;
 using System.Net;
 using System.Collections;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace Basic_Bullet_Journal
 {
@@ -18,7 +18,6 @@ namespace Basic_Bullet_Journal
         //weekly habit tracker
         public static List<Habits> AddHabit()
         {
-
             Console.WriteLine("How many habits would you like to add?");
             var numberOfHabits = int.Parse(Console.ReadLine());
             List<Habits> tracker = new List<Habits>();
@@ -32,8 +31,7 @@ namespace Basic_Bullet_Journal
                 for (int i = 0; i < numberOfHabits; i++)
                 {
 
-
-                    Console.WriteLine("Populating....");
+                    Console.WriteLine("Populating....\n");
                     var completed = new Dictionary<string, string>()
             {
                 {"sunday", "_"},
@@ -72,58 +70,61 @@ namespace Basic_Bullet_Journal
                 }
                 Console.WriteLine("\nNice going!\n");
                 Console.WriteLine("*~*This Week's Habits*~*");
+                var options = new JsonSerializerOptions { WriteIndented = true };
+                string jsonString = JsonSerializer.Serialize(tracker, options);
+                string docPath =
+                  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "HabitTracker.txt")))
+                {
+                        outputFile.WriteLine(jsonString);
+                }
+                //Console.WriteLine(jsonString);
                 foreach (var item in tracker)
                 {
                     Console.WriteLine($"\n *{item} ");
-                }    
+                }
             }
             return tracker;
-
-            //using (TextWriter tw = new StreamWriter("SavedList.txt"))
-            //{
-            //    foreach (String s in tracker)
-            //        tw.WriteLine(s);
-            //}
-            //System.IO.File.WriteAllLines(@"C:\temp\ipAddresses.txt", tracker);
-
-
-            //List<Habits> docPath =
-            //      Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            //using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "habits.txt")))
-            //{
-
-            //    foreach (string item in tracker)
-            //        outputFile.WriteLine(item);
-            //}
-
         }
 
         public static void Options()
         {
-            Console.WriteLine("Let's look at your habits! Enter 'okay' to continue.");
+            Console.WriteLine("Would you like to start a new weekly habit tracker?\n Note: Creating a new tracker will overwrite a previous one.");
             string input2 = Console.ReadLine();
 
-            if (input2.ToLower() == "okay")
-            {
-                
+            if (input2.ToLower() == "yes")
+            {  
                 HabitTracker.AddHabit();
-
             }
-
+            else if (input2.ToLower() == "no" )
+            {
+                Console.WriteLine();
+            }
             else
             {
-                Console.WriteLine("Please write 'okay!'");
-                HabitTracker.Options();
+                Console.WriteLine("Invalid input. Enter 'yes' or 'no.'");
             }
-            //Console.WriteLine("\nYou are definitely viewing habits right now!");
-           
-           
+
         }
 
         public static void View()
         {
-            
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "HabitTracker.txt");
+            string[] lines = System.IO.File.ReadAllLines(@filePath);
+
+            // Display the file contents by using a foreach loop.
+            System.Console.WriteLine("");
+            foreach (string line in lines)
+            {
+                // Use a tab to indent each line of the file.
+                Console.WriteLine("\t" + line);
+                //Console.WriteLine("");
+            }
+
+            // Keep the console window open in debug mode.
+            Console.WriteLine("Press any key to return to menu.");
+            System.Console.ReadKey();
         }
 
         //public string[][]   
